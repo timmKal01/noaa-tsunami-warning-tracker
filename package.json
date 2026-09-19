@@ -1,0 +1,15 @@
+{
+    "name": "noaa-tsunami-warning-tracker",
+    "version": "0.1.0",
+    "type": "module",
+    "description": "Check for active tsunami warnings, watches, and advisories from the official NOAA/National Weather Service alerts feed, optionally filtered by US coastal state.",
+    "engines": {
+        "node": ">=18.0.0"
+    },
+    "dependencies": {
+        "apify": "^3.2.6"
+    },
+    "scripts": {
+        "start": "node src/main.js"
+    }
+}

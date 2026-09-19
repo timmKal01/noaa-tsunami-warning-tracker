@@ -1,0 +1,12 @@
+{
+    "actorOutputSchemaVersion": 1,
+    "title": "Output schema of Tsunami Warning Tracker",
+    "description": "One record per active tsunami warning, watch, or advisory.",
+    "properties": {
+        "results": {
+            "type": "string",
+            "title": "Active alerts",
+            "template": "{{links.apiDefaultDatasetUrl}}/items"
+        }
+    }
+}

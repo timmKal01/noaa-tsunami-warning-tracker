@@ -1,0 +1,19 @@
+{
+    "title": "Tsunami Warning Tracker Input",
+    "type": "object",
+    "schemaVersion": 1,
+    "properties": {
+        "areas": {
+            "title": "Areas (state codes)",
+            "type": "array",
+            "editor": "stringList",
+            "description": "Limit to these two-letter US state/territory codes, e.g. \"CA\", \"HI\", \"AK\". Leave empty to check all coastal areas nationwide."
+        },
+        "severities": {
+            "title": "Alert types",
+            "type": "array",
+            "editor": "stringList",
+            "description": "Limit to these alert types: \"Tsunami Warning\", \"Tsunami Watch\", \"Tsunami Advisory\". Leave empty to check all three."
+        }
+    }
+}
