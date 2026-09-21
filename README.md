@@ -55,6 +55,11 @@ in this portfolio: automatic retries on transient failures, a per-attempt
 timeout so a slow response cannot hang the run. No key, no proxy, no
 scraping, public-domain US government data.
 
+## Pricing note
+
+Billed per **check**, not per alert returned, one charge whether the
+check finds no active tsunami alerts or several.
+
 ## Related products
 
 - [US Weather Tracker](https://github.com/timmKal01/us-weather-tracker): everyday NWS forecasts and alerts for a specific location, not scoped to tsunamis
