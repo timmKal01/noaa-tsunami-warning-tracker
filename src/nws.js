@@ -25,6 +25,10 @@ const AREA_NAMES = {
     washington: 'WA', 'west virginia': 'WV', wisconsin: 'WI', wyoming: 'WY',
 };
 
+/** NWS marine region codes, accepted as areas too (PZ Eastern Pacific, PK Alaska, PH Hawaii, AM/AN Atlantic, GM Gulf...). */
+const MARINE_REGIONS = ['AM', 'AN', 'GM', 'LC', 'LE', 'LH', 'LM', 'LO', 'LS', 'PH', 'PK', 'PM', 'PS', 'PZ', 'SL'];
+const VALID_AREAS = new Set([...Object.values(AREA_NAMES), ...MARINE_REGIONS]);
+
 /** api.weather.gov has no documented SLA and is known to slow down or 5xx under load; retries and a per-attempt timeout keep one bad request from failing (or hanging) the whole run. */
 async function fetchJson(url) {
     let lastError;
@@ -76,7 +80,7 @@ export function normalizeInput({ areas = [], severities = [] } = {}) {
     for (const raw of areas ?? []) {
         const text = String(raw).trim();
         if (!text) continue;
-        const code = /^[a-z]{2}$/i.test(text) ? text.toUpperCase() : AREA_NAMES[text.toLowerCase()];
+        const code = VALID_AREAS.has(text.toUpperCase()) ? text.toUpperCase() : AREA_NAMES[text.toLowerCase()];
         if (code) {
             if (!codes.includes(code)) codes.push(code);
         } else {
@@ -96,10 +100,15 @@ export function normalizeInput({ areas = [], severities = [] } = {}) {
     };
 }
 
+/**
+ * Several values go in ONE comma-separated parameter. api.weather.gov silently keeps only the last of
+ * repeated `event=`/`area=` parameters (checked 2026-10-12), so the default check used to cover
+ * Tsunami Advisories only, never Warnings or Watches, and only the last area entered.
+ */
 export async function getActiveTsunamiAlerts({ events, areas }) {
     const url = new URL('https://api.weather.gov/alerts/active');
-    for (const event of events) url.searchParams.append('event', event);
-    for (const area of areas) url.searchParams.append('area', area);
+    url.searchParams.set('event', events.join(','));
+    if (areas.length > 0) url.searchParams.set('area', areas.join(','));
 
     const data = await fetchJson(url);
 
