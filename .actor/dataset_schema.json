@@ -1,0 +1,63 @@
+{
+    "actorSpecification": 1,
+    "fields": {},
+    "views": {
+        "overview": {
+            "title": "Overview",
+            "transformation": {
+                "fields": [
+                    "status",
+                    "event",
+                    "headline",
+                    "areaDesc",
+                    "severity",
+                    "urgency",
+                    "effective",
+                    "expires",
+                    "checkedAt"
+                ]
+            },
+            "display": {
+                "component": "table",
+                "properties": {
+                    "status": {
+                        "label": "Status",
+                        "format": "text"
+                    },
+                    "event": {
+                        "label": "Alert type",
+                        "format": "text"
+                    },
+                    "headline": {
+                        "label": "Headline",
+                        "format": "text"
+                    },
+                    "areaDesc": {
+                        "label": "Area",
+                        "format": "text"
+                    },
+                    "severity": {
+                        "label": "Severity",
+                        "format": "text"
+                    },
+                    "urgency": {
+                        "label": "Urgency",
+                        "format": "text"
+                    },
+                    "effective": {
+                        "label": "Effective",
+                        "format": "text"
+                    },
+                    "expires": {
+                        "label": "Expires",
+                        "format": "text"
+                    },
+                    "checkedAt": {
+                        "label": "Checked at",
+                        "format": "text"
+                    }
+                }
+            }
+        }
+    }
+}

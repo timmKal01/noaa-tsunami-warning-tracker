@@ -8,6 +8,7 @@ specific coastal states so you only see what matters for your operations.
 
 ```json
 {
+  "status": "active_alert",
   "id": "urn:oid:2.49.0.1.840.0.abc123",
   "event": "Tsunami Warning",
   "severity": "Extreme",
@@ -20,11 +21,29 @@ specific coastal states so you only see what matters for your operations.
   "senderName": "NWS Los Angeles CA",
   "effective": "2026-09-19T08:00:00-07:00",
   "expires": "2026-09-19T14:00:00-07:00",
-  "nwsUrl": "https://api.weather.gov/alerts/urn:oid:..."
+  "nwsUrl": "https://api.weather.gov/alerts/urn:oid:...",
+  "checkedAt": "2026-09-19T15:05:00.000Z"
 }
 ```
 
-No active alerts returns an empty result, still billed once for the check.
+Most of the time there is no tsunami alert anywhere. Then the output is a
+single row that says so, instead of an empty table:
+
+```json
+{
+  "status": "no_active_alerts",
+  "event": null,
+  "headline": "No active tsunami warnings, watches or advisories for CA, HI",
+  "description": "The National Weather Service had no active tsunami warnings, watches or advisories for CA, HI when checked at 2026-10-12T15:56:27.427Z.",
+  "areaDesc": "CA, HI",
+  "checkedAt": "2026-10-12T15:56:27.427Z"
+}
+```
+
+If none of the areas or alert types you entered can be understood, you get
+one `"status": "input_error"` row explaining what to fix, and nothing is
+charged. An area or alert type that can't be understood is never dropped
+silently in a way that widens the search: you only ever get tsunami alerts.
 
 ## Who this is for
 
@@ -36,8 +55,8 @@ No active alerts returns an empty result, still billed once for the check.
 
 | Field | Type | Description |
 |---|---|---|
-| `areas` | array | Two-letter US state/territory codes, e.g. `["CA", "HI", "AK"]`. Leave empty for all coastal areas nationwide. |
-| `severities` | array | Limit to `"Tsunami Warning"`, `"Tsunami Watch"`, `"Tsunami Advisory"`. Leave empty for all three. |
+| `areas` | array | US states or territories, as two-letter codes (`["CA", "HI", "AK"]`) or names (`"California"`). Leave empty for all coastal areas nationwide. |
+| `severities` | array | Limit to `"Tsunami Warning"`, `"Tsunami Watch"`, `"Tsunami Advisory"`, in any capitalisation, singular or plural. The short forms `"warning"`, `"watch"` and `"advisory"` work too. Leave empty for all three. |
 
 ```json
 {
@@ -57,8 +76,10 @@ scraping, public-domain US government data.
 
 ## Pricing note
 
-Billed per **check**, not per alert returned, one charge whether the
-check finds no active tsunami alerts or several.
+Billed per **check**, not per alert returned: one charge whether the
+check finds no active tsunami alerts or several. A run that can't check
+anything, because none of the areas or alert types could be understood,
+isn't charged.
 
 ## Related products
 

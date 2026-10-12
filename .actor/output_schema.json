@@ -1,7 +1,7 @@
 {
     "actorOutputSchemaVersion": 1,
     "title": "Output schema of Tsunami Warning Tracker",
-    "description": "One record per active tsunami warning, watch, or advisory.",
+    "description": "One record per active tsunami warning, watch or advisory, or a single row saying there are none.",
     "properties": {
         "results": {
             "type": "string",
