@@ -1,8 +1,15 @@
-# Tsunami Warning Tracker: Active NOAA Alerts by Area
+# Tsunami Warning Tracker: Active NOAA Alerts
 
-Check for active tsunami warnings, watches, and advisories from the
-official NOAA/National Weather Service alerts feed. Optionally scope to
-specific coastal states so you only see what matters for your operations.
+Active tsunami warnings, watches and advisories for U.S. coasts, for
+coastal emergency management, ports and shipping, and coastal property and
+insurance teams. Check the whole country or only the coastal states you
+care about, and get each active alert from the official National Weather
+Service feed: severity, affected area, instructions and timing.
+
+## What you get
+
+- One row per active alert: type, severity, urgency, headline, affected areas, issuing office, start and expiry times, and the official instructions
+- When nothing is active, one row that says so, so an all-clear never looks like an empty result
 
 ## Output (sample)
 
@@ -47,7 +54,7 @@ silently in a way that widens the search: you only ever get tsunami alerts.
 
 ## Who this is for
 
-- **Coastal emergency management teams** running a standing check instead of manually watching NOAA's site.
+- **Coastal emergency management teams** running a standing check on their coastline.
 - **Ports and shipping operations** deciding whether to hold or divert vessels.
 - **Coastal property and insurance teams** who need an automated trigger for a wider alert process.
 

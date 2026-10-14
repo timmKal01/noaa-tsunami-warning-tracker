@@ -2,7 +2,7 @@
     "actorSpecification": 1,
     "name": "noaa-tsunami-warning-tracker",
     "title": "Tsunami Warning Tracker: Active NOAA Alerts",
-    "description": "Check for active tsunami warnings, watches, and advisories from the official NOAA/National Weather Service alerts feed, optionally filtered by US coastal state. For coastal emergency management, ports and shipping operations, and coastal property and insurance teams. No key, no proxy.",
+    "description": "Active tsunami warnings, watches and advisories for U.S. coasts from the official NOAA/National Weather Service feed, nationwide or by coastal state. For coastal emergency management, ports and shipping, and coastal property and insurance teams.",
     "version": "0.1",
     "meta": {
         "templateId": "custom-no-proxy"
