@@ -91,5 +91,3 @@ isn't charged.
 ## Related products
 
 - [US Weather Forecast & Alerts API (NWS)](https://apify.com/m_ctim/us-weather-tracker): everyday NWS forecasts and alerts for a specific location, not scoped to tsunamis
-- [Earthquake Tracker](https://apify.com/m_ctim/earthquake-alert): the seismic event that most often triggers a tsunami warning in the first place
-- [Active Hurricane Tracker](https://apify.com/m_ctim/active-hurricane-tracker) / [Volcano Alert Tracker](https://apify.com/m_ctim/volcano-alert-tracker): the rest of this portfolio's natural hazard family
