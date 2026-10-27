@@ -15,6 +15,7 @@ Service feed: severity, affected area, instructions and timing.
 
 ```json
 {
+  "rowType": "alert",
   "status": "active_alert",
   "id": "urn:oid:2.49.0.1.840.0.abc123",
   "event": "Tsunami Warning",
@@ -38,6 +39,7 @@ single row that says so, instead of an empty table:
 
 ```json
 {
+  "rowType": "note",
   "status": "no_active_alerts",
   "event": null,
   "headline": "No active tsunami warnings, watches or advisories for CA, HI",
@@ -46,6 +48,8 @@ single row that says so, instead of an empty table:
   "checkedAt": "2026-10-12T15:56:27.427Z"
 }
 ```
+
+`rowType` tells the rows apart: `"alert"` for an active alert, `"note"` for the no-alerts row, and `"error"` for the input-problem row.
 
 If none of the areas or alert types you entered can be understood, you get
 one `"status": "input_error"` row explaining what to fix, and nothing is

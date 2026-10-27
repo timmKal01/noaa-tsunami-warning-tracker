@@ -20,6 +20,7 @@ const kindsText = kinds.length > 1 ? `${kinds.slice(0, -1).join(', ')} or ${kind
 if (nothingValid) {
     // Nothing usable to check: say why in the output, and don't charge for a check that never ran.
     await Actor.pushData({
+        rowType: 'error',
         status: 'input_error',
         headline: "Couldn't run the check",
         description: problems.join(' '),
@@ -31,13 +32,14 @@ if (nothingValid) {
     const alerts = await getActiveTsunamiAlerts({ events, areas });
 
     for (const alert of alerts) {
-        await Actor.pushData({ ...alert, checkedAt });
+        await Actor.pushData({ rowType: 'alert', ...alert, checkedAt });
     }
 
     // Most of the time there's no tsunami alert anywhere. Say so in the output instead of leaving
     // an empty table that looks like the tool didn't work.
     if (alerts.length === 0) {
         await Actor.pushData({
+            rowType: 'note',
             status: 'no_active_alerts',
             event: null,
             headline: `No active tsunami ${kindsText} for ${where}`,
